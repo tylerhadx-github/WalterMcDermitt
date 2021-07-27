@@ -2,7 +2,7 @@
   <v-card flat>
     <v-card-title>The Search For Walter McDermitt
       <v-spacer></v-spacer>
-            <v-btn color="primary" href="https://www.peecho.com/print/en/1032982">Buy Print 12$(Discount Bulk Orders)</v-btn>
+            <v-btn  href="https://www.peecho.com/print/en/1032982">Buy Print 12$(Discount Bulk Orders)</v-btn>
     </v-card-title>
     <v-card-text>
       <v-row>
@@ -19,7 +19,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" href="https://www.peecho.com/print/en/1032982">Buy Print 12$(Discount Bulk Orders)</v-btn>
+      <v-btn href="https://www.peecho.com/print/en/1032982">Buy Print 12$(Discount Bulk Orders)</v-btn>
     </v-card-actions>
   </v-card>
 </template>
