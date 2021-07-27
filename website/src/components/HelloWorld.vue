@@ -1,9 +1,12 @@
 <template>
   <v-card flat>
-    <v-card-title>The Search For Walter McDermitt</v-card-title>
+    <v-card-title>The Search For Walter McDermitt
+      <v-spacer></v-spacer>
+            <v-btn color="primary" href="https://www.peecho.com/print/en/1032982">Buy Print 12$(Discount Bulk Orders)</v-btn>
+    </v-card-title>
     <v-card-text>
       <v-row>
-        <v-col>
+        <v-col class="text-start">
           Join one family as they recount the mischievous adventures of Leech Lakes most infamous walleye.
 
         </v-col>
@@ -16,7 +19,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn href="https://www.peecho.com/print/en/1032982">Buy Print 12$(Discount Bulk Orders)</v-btn>
+      <v-btn color="primary" href="https://www.peecho.com/print/en/1032982">Buy Print 12$(Discount Bulk Orders)</v-btn>
     </v-card-actions>
   </v-card>
 </template>
