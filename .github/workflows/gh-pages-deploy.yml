@@ -7,12 +7,17 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: Build and deploy website
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+  build:
+    name: Build website
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,20 +36,19 @@ jobs:
         working-directory: website
         run: npm run build
 
-      - name: Publish build to repository root
-        run: |
-          rm -rf static
-          cp -r website/dist/. .
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: website/dist
 
-      - name: Commit and push site
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html assets images favicon.svg icons.svg google24462e06dd67c953.html
-          git add -u static || true
-          if git diff --staged --quiet; then
-            echo "No site changes to publish"
-          else
-            git commit -m "deploy: publish site to GitHub Pages [skip ci]"
-            git push
-          fi
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
