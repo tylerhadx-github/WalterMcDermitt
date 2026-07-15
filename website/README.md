@@ -1,21 +1,25 @@
-# waltermcdermitt
+# Family Stories
 
-> A Vue.js project
+Vue 3 + Vite site showcasing family-authored children's books.
 
-## Build Setup
+## Develop
 
-``` bash
-# install dependencies
+```bash
+cd website
 npm install
-
-# serve with hot reload at localhost:8080
 npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Build
+
+```bash
+npm run build
+```
+
+## Content
+
+Books are defined in `src/data/projects.js` (exports `books`).
+
+## Google Search Console
+
+Verification file: `public/google24462e06dd67c953.html`

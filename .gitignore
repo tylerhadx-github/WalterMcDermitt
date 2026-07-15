@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+website/node_modules/
+website-legacy/node_modules/
+
+# Build outputs
+website/dist/
+website-legacy/dist/
+dist/
+
+# Local / OS
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+!.env.example
+
+# Editor
+.idea/
+*.swp
+*.swo
+
+# Vite
+website/.vite/
+*.local

@@ -1,21 +1,38 @@
+name: Deploy to GitHub Pages
 
-  name: Deploy to Github Pages
-  on:
-    push:
-      branches:
-        - master
-  jobs:
-    gh-pages-deploy:
-      name: Deploying to Github Pages
-      runs-on: ubuntu-latest
-      steps:
-          - uses: actions/checkout@v2
-          - uses: actions/setup-node@v2
-            with:
-              node-version: '12'
-          - name: Install packages
-            run: npm i
-          - name: Set Creds
-            run: git config user.name "tyler.hadx@gmail.com" && git config user.email "tyler.hadx@gmail.com"
-          - name: Deploy
-            run: npm run deploy
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: Build and deploy website
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        working-directory: website
+        run: npm ci
+
+      - name: Build
+        working-directory: website
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./website/dist
+          force_orphan: true
